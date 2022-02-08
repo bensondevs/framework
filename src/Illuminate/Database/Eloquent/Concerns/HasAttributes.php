@@ -1831,6 +1831,21 @@ trait HasAttributes
             $this->getDirty(), is_array($attributes) ? $attributes : func_get_args()
         );
     }
+    
+    /**
+     * Determine if the model or any of the given attribute has been modified.
+     *
+     * @param  string       $attribute
+     * @param  mixed|null   $value
+     * @return bool
+     */
+    public function isChangedInto(string $attribute, $value = null)
+    {
+        return (
+            $this->isDirty($attribute) && 
+            $this->attributes[$attribute] === $value
+        );
+    }
 
     /**
      * Determine if the model or all the given attribute(s) have remained the same.
